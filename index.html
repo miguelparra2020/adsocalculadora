@@ -119,7 +119,7 @@
       <button type="button" class="decimal function btn btn-secondary" value=".">.</button>
       <button type="button" class="all-clear function btn btn-danger btn-sm" value="all-clear">AC</button>
 
-      <button type="button" class="equal-sign operator btn btn-default" value="=">=</button>
+      <button type="button" class="equal-sign operator btn btn-default" id="result" value="=">=</button>
 
     </div>
   </div>
@@ -136,10 +136,10 @@ var chart = new Chart(ctx, {
     data: {
         labels: ['Resultado'],
         datasets: [{
-            label: 'My First dataset',
+            label: 'Mi resultado fue',
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
-            data: [0,45]
+            data: [0,1000]
         }]
     },
 
