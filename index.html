@@ -171,10 +171,10 @@
 
     <div class="calculadora-keys">
 
-      <button type="button" class="operator btn btn-info" value="+">+</button>
-      <button type="button" class="operator btn btn-info" value="-">-</button>
-      <button type="button" class="operator btn btn-info" value="*">&times;</button>
-      <button type="button" class="operator btn btn-info" value="/">&divide;</button>
+      <button type="button" class="operador btn btn-info" value="+">+</button>
+      <button type="button" class="operador btn btn-info" value="-">-</button>
+      <button type="button" class="operador btn btn-info" value="*">&times;</button>
+      <button type="button" class="operador btn btn-info" value="/">&divide;</button>
 
       <button type="button" value="7" class="btn btn-light waves-effect">7</button>
       <button type="button" value="8" class="btn btn-light waves-effect">8</button>
@@ -194,7 +194,7 @@
       <button type="button" value="0" class="btn btn-light waves-effect">0</button>
       <button type="button" class="all-clear function btn btn-danger btn-sm" value="all-clear">AC</button>
 
-      <button type="button" class="equal-sign operator btn btn-default" id="result" value="=">=</button>
+      <button type="button" class="equal-sign operador btn btn-default" id="result" value="=">=</button>
 
     </div>
   </div>
@@ -233,7 +233,7 @@ const calculadora = {
   displayValue: '0',
   firstOperand: null,
   waitingForSecondOperand: false,
-  operator: null,
+  operador: null,
 };
 
 function inputDigit(digit) {
@@ -247,27 +247,27 @@ function inputDigit(digit) {
   }
 }
 
-function handleOperator(nextOperator) {
-  const { firstOperand, displayValue, operator } = calculadora
+function handleOperador(nextOperador) {
+  const { firstOperand, displayValue, operador } = calculadora
   const inputValue = parseFloat(displayValue);
 
-  if (operator && calculadora.waitingForSecondOperand)  {
-    calculadora.operator = nextOperator;
+  if (operador && calculadora.waitingForSecondOperand)  {
+    calculadora.operador = nextOperador;
     return;
   }
 
   if (firstOperand == null) {
     calculadora.firstOperand = inputValue;
-  } else if (operator) {
+  } else if (operador) {
     const currentValue = firstOperand || 0;
-    const result = performCalculation[operator](currentValue, inputValue);
+    const result = performCalculation[operador](currentValue, inputValue);
 
     calculadora.displayValue = String(result);
     calculadora.firstOperand = result;
   }
 
   calculadora.waitingForSecondOperand = true;
-  calculadora.operator = nextOperator;
+  calculadora.operador = nextOperador;
 }
 
 const performCalculation = {
@@ -286,7 +286,7 @@ function resetCalculadora() {
   calculadora.displayValue = '0';
   calculadora.firstOperand = null;
   calculadora.waitingForSecondOperand = false;
-  calculadora.operator = null;
+  calculadora.operador = null;
 }
 
 function updateDisplay() {
@@ -303,8 +303,8 @@ keys.addEventListener('click', (event) => {
     return;
   }
 
-  if (target.classList.contains('operator')) {
-    handleOperator(target.value);
+  if (target.classList.contains('operador')) {
+    handleOperador(target.value);
 		updateDisplay();
     return;
   }
