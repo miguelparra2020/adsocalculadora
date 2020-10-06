@@ -232,18 +232,18 @@ var chart = new Chart(ctx, {
 const calculadora = {
   valorPantalla: '0',
   primeraOperacion: null,
-  waitingForSecondOperand: false,
+  esperandoPorSegundaOperacion: false,
   operador: null,
 };
 
-function inputDigit(digit) {
-  const { valorPantalla, waitingForSecondOperand } = calculadora;
+function ingresarDigito(digito) {
+  const { valorPantalla, esperandoPorSegundaOperacion } = calculadora;
 
-  if (waitingForSecondOperand === true) {
-    calculadora.valorPantalla = digit;
-    calculadora.waitingForSecondOperand = false;
+  if (esperandoPorSegundaOperacion === true) {
+    calculadora.valorPantalla = digito;
+    calculadora.esperandoPorSegundaOperacion = false;
   } else {
-    calculadora.valorPantalla = valorPantalla === '0' ? digit : valorPantalla + digit;
+    calculadora.valorPantalla = valorPantalla === '0' ? digito : valorPantalla + digito;
   }
 }
 
@@ -251,7 +251,7 @@ function handleOperador(nextOperador) {
   const { primeraOperacion, valorPantalla, operador } = calculadora
   const inputValue = parseFloat(valorPantalla);
 
-  if (operador && calculadora.waitingForSecondOperand)  {
+  if (operador && calculadora.esperandoPorSegundaOperacion)  {
     calculadora.operador = nextOperador;
     return;
   }
@@ -266,7 +266,7 @@ function handleOperador(nextOperador) {
     calculadora.primeraOperacion = result;
   }
 
-  calculadora.waitingForSecondOperand = true;
+  calculadora.esperandoPorSegundaOperacion = true;
   calculadora.operador = nextOperador;
 }
 
@@ -285,7 +285,7 @@ const performCalculation = {
 function resetCalculadora() {
   calculadora.valorPantalla = '0';
   calculadora.primeraOperacion = null;
-  calculadora.waitingForSecondOperand = false;
+  calculadora.esperandoPorSegundaOperacion = false;
   calculadora.operador = null;
 }
 
@@ -321,7 +321,7 @@ keys.addEventListener('click', (event) => {
     return;
   }
 
-  inputDigit(target.value);
+  ingresarDigito(target.value);
   updateDisplay();
 });
 </script>
