@@ -271,15 +271,15 @@ function handleOperador(nextOperador) {
 }
 
 const performCalculation = {
-  '/': (primeraOperacion, secondOperand) => primeraOperacion / secondOperand,
+  '/': (primeraOperacion, segundaOperacion) => primeraOperacion / segundaOperacion,
 
-  '*': (primeraOperacion, secondOperand) => primeraOperacion * secondOperand,
+  '*': (primeraOperacion, segundaOperacion) => primeraOperacion * segundaOperacion,
 
-  '+': (primeraOperacion, secondOperand) => primeraOperacion + secondOperand,
+  '+': (primeraOperacion, segundaOperacion) => primeraOperacion + segundaOperacion,
 
-  '-': (primeraOperacion, secondOperand) => primeraOperacion - secondOperand,
+  '-': (primeraOperacion, segundaOperacion) => primeraOperacion - segundaOperacion,
 
-  '=': (primeraOperacion, secondOperand) => secondOperand
+  '=': (primeraOperacion, segundaOperacion) => segundaOperacion
 };
 
 function resetCalculadora() {
