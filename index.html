@@ -289,12 +289,12 @@ function resetCalculadora() {
   calculadora.operador = null;
 }
 
-function updateDisplay() {
+function actualizarPantalla() {
   const display = document.querySelector('.calculadora-screen');
   display.value = calculadora.valorPantalla;
 }
 
-updateDisplay();
+actualizarPantalla();
 
 const keys = document.querySelector('.calculadora-keys');
 keys.addEventListener('click', (event) => {
@@ -305,24 +305,24 @@ keys.addEventListener('click', (event) => {
 
   if (target.classList.contains('operador')) {
     encargarOperador(target.value);
-		updateDisplay();
+		actualizarPantalla();
     return;
   }
 
   if (target.classList.contains('decimal')) {
     inputDecimal(target.value);
-		updateDisplay();
+		actualizarPantalla();
     return;
   }
 
   if (target.classList.contains('all-clear')) {
     resetCalculadora();
-		updateDisplay();
+		actualizarPantalla();
     return;
   }
 
   ingresarDigito(target.value);
-  updateDisplay();
+  actualizarPantalla();
 });
 </script>
   
