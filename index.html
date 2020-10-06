@@ -247,12 +247,12 @@ function ingresarDigito(digito) {
   }
 }
 
-function handleOperador(nextOperador) {
+function encargarOperador(siguienteOperador) {
   const { primeraOperacion, valorPantalla, operador } = calculadora
   const inputValue = parseFloat(valorPantalla);
 
   if (operador && calculadora.esperandoPorSegundaOperacion)  {
-    calculadora.operador = nextOperador;
+    calculadora.operador = siguienteOperador;
     return;
   }
 
@@ -267,7 +267,7 @@ function handleOperador(nextOperador) {
   }
 
   calculadora.esperandoPorSegundaOperacion = true;
-  calculadora.operador = nextOperador;
+  calculadora.operador = siguienteOperador;
 }
 
 const performCalculation = {
@@ -304,7 +304,7 @@ keys.addEventListener('click', (event) => {
   }
 
   if (target.classList.contains('operador')) {
-    handleOperador(target.value);
+    encargarOperador(target.value);
 		updateDisplay();
     return;
   }
