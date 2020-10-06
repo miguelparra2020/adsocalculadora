@@ -192,7 +192,6 @@
 
 
       <button type="button" value="0" class="btn btn-light waves-effect">0</button>
-      <button type="button" class="decimal function btn btn-secondary" value=".">.</button>
       <button type="button" class="all-clear function btn btn-danger btn-sm" value="all-clear">AC</button>
 
       <button type="button" class="equal-sign operator btn btn-default" id="result" value="=">=</button>
@@ -245,14 +244,6 @@ function inputDigit(digit) {
     calculator.waitingForSecondOperand = false;
   } else {
     calculator.displayValue = displayValue === '0' ? digit : displayValue + digit;
-  }
-}
-
-function inputDecimal(dot) {
-  // If the `displayValue` does not contain a decimal point
-  if (!calculator.displayValue.includes(dot)) {
-    // Append the decimal point
-    calculator.displayValue += dot;
   }
 }
 
