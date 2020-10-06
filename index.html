@@ -231,7 +231,7 @@ var chart = new Chart(ctx, {
 <script>
 const calculadora = {
   valorPantalla: '0',
-  firstOperand: null,
+  primeraOperacion: null,
   waitingForSecondOperand: false,
   operador: null,
 };
@@ -248,7 +248,7 @@ function inputDigit(digit) {
 }
 
 function handleOperador(nextOperador) {
-  const { firstOperand, valorPantalla, operador } = calculadora
+  const { primeraOperacion, valorPantalla, operador } = calculadora
   const inputValue = parseFloat(valorPantalla);
 
   if (operador && calculadora.waitingForSecondOperand)  {
@@ -256,14 +256,14 @@ function handleOperador(nextOperador) {
     return;
   }
 
-  if (firstOperand == null) {
-    calculadora.firstOperand = inputValue;
+  if (primeraOperacion == null) {
+    calculadora.primeraOperacion = inputValue;
   } else if (operador) {
-    const currentValue = firstOperand || 0;
+    const currentValue = primeraOperacion || 0;
     const result = performCalculation[operador](currentValue, inputValue);
 
     calculadora.valorPantalla = String(result);
-    calculadora.firstOperand = result;
+    calculadora.primeraOperacion = result;
   }
 
   calculadora.waitingForSecondOperand = true;
@@ -271,20 +271,20 @@ function handleOperador(nextOperador) {
 }
 
 const performCalculation = {
-  '/': (firstOperand, secondOperand) => firstOperand / secondOperand,
+  '/': (primeraOperacion, secondOperand) => primeraOperacion / secondOperand,
 
-  '*': (firstOperand, secondOperand) => firstOperand * secondOperand,
+  '*': (primeraOperacion, secondOperand) => primeraOperacion * secondOperand,
 
-  '+': (firstOperand, secondOperand) => firstOperand + secondOperand,
+  '+': (primeraOperacion, secondOperand) => primeraOperacion + secondOperand,
 
-  '-': (firstOperand, secondOperand) => firstOperand - secondOperand,
+  '-': (primeraOperacion, secondOperand) => primeraOperacion - secondOperand,
 
-  '=': (firstOperand, secondOperand) => secondOperand
+  '=': (primeraOperacion, secondOperand) => secondOperand
 };
 
 function resetCalculadora() {
   calculadora.valorPantalla = '0';
-  calculadora.firstOperand = null;
+  calculadora.primeraOperacion = null;
   calculadora.waitingForSecondOperand = false;
   calculadora.operador = null;
 }
