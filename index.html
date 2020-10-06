@@ -230,26 +230,26 @@ var chart = new Chart(ctx, {
 
 <script>
 const calculadora = {
-  displayValue: '0',
+  valorPantalla: '0',
   firstOperand: null,
   waitingForSecondOperand: false,
   operador: null,
 };
 
 function inputDigit(digit) {
-  const { displayValue, waitingForSecondOperand } = calculadora;
+  const { valorPantalla, waitingForSecondOperand } = calculadora;
 
   if (waitingForSecondOperand === true) {
-    calculadora.displayValue = digit;
+    calculadora.valorPantalla = digit;
     calculadora.waitingForSecondOperand = false;
   } else {
-    calculadora.displayValue = displayValue === '0' ? digit : displayValue + digit;
+    calculadora.valorPantalla = valorPantalla === '0' ? digit : valorPantalla + digit;
   }
 }
 
 function handleOperador(nextOperador) {
-  const { firstOperand, displayValue, operador } = calculadora
-  const inputValue = parseFloat(displayValue);
+  const { firstOperand, valorPantalla, operador } = calculadora
+  const inputValue = parseFloat(valorPantalla);
 
   if (operador && calculadora.waitingForSecondOperand)  {
     calculadora.operador = nextOperador;
@@ -262,7 +262,7 @@ function handleOperador(nextOperador) {
     const currentValue = firstOperand || 0;
     const result = performCalculation[operador](currentValue, inputValue);
 
-    calculadora.displayValue = String(result);
+    calculadora.valorPantalla = String(result);
     calculadora.firstOperand = result;
   }
 
@@ -283,7 +283,7 @@ const performCalculation = {
 };
 
 function resetCalculadora() {
-  calculadora.displayValue = '0';
+  calculadora.valorPantalla = '0';
   calculadora.firstOperand = null;
   calculadora.waitingForSecondOperand = false;
   calculadora.operador = null;
@@ -291,7 +291,7 @@ function resetCalculadora() {
 
 function updateDisplay() {
   const display = document.querySelector('.calculadora-screen');
-  display.value = calculadora.displayValue;
+  display.value = calculadora.valorPantalla;
 }
 
 updateDisplay();
